@@ -52,7 +52,9 @@
   "scripts": {
     "install": "node-pre-gyp install --fallback-to-build",
     "test": "tape test/*-test.js | faucet",
-    "prebuild": "node-pre-gyp rebuild && node-pre-gyp package"
+    "release-major": "npm version -m '[publish binary]' major",
+    "release-minor": "npm version -m '[publish binary]' minor",
+    "release-patch": "npm version -m '[publish binary]' patch"
   },
   "license": "MIT",
   "gypfile": true,
