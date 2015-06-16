@@ -1,17 +1,28 @@
-language: node_js
+language: cpp
+
+os:
+  - linux
+  - osx
+
+env:
+  matrix:
+   - N_PLATFORM="io" N_VERSION="2.3.0"
+   - N_PLATFORM="io" N_VERSION="1.8.2"
+   - N_PLATFORM="io" N_VERSION="1.0.4"
+   - N_PLATFORM="node" N_VERSION="0.12.4"
+   - N_PLATFORM="node" N_VERSION="0.10.38"
 
 before_install:
+  - rm -rf ~/.nvm
   - export JOBS=max
-  - npm install -g node-gyp-install
-  - node-gyp-install
+  - git clone https://github.com/ralphtheninja/n.git ./scripts/n
+  - sudo chmod -R a+xw /usr/local
 
-node_js:
-  - "2.2"
-  - "1.8"
-  - "1.0"
-  - "0.12"
-  - "0.10"
+before_script:
+  - export PATH=./scripts/n/bin:./node_modules/.bin/:$PATH
+  - export COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
+  - env
 
 script:
-  - npm test
+  - ./scripts/linux-osx.sh
 
