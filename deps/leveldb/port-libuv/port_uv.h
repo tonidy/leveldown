@@ -28,7 +28,9 @@
 #elif defined(_MSC_VER)
   #include "stdint-msvc2008.h"
   #define PLATFORM_IS_LITTLE_ENDIAN true
+#if _MSC_VER < 1900 // VS 2015 and below
   #define snprintf _snprintf
+#endif
   #define close _close
   #define fread_unlocked _fread_nolock
 #else
