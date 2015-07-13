@@ -34,6 +34,8 @@
                 'LEVELDB_PLATFORM_UV=1'
               , 'NOMINMAX=1'
               , '_HAS_EXCEPTIONS=0'
+              , '_CSTDINT_=1'
+              , '_GLOBAL_USING=1'
             ]
           , 'sources': [
                 'port-libuv/port_uv.cc'
